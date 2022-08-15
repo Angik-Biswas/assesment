@@ -1,0 +1,55 @@
+---------question 1---------
+---------table------------
+create table `person`(
+                     `personID` int(4) not null, 
+                     `lastName` varchar(20),
+                     `firstName` varchar(20),
+                     primary key(`personID`)
+                     )
+                     ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                     insert into person (personID,lastName,firstName) values(1,'Biswas','Angik'),(2,'Mukherjee','Rahul'),(3,'Ghosh','Tuhin'),
+                     (5,'Saha','Amit');
+				
+create table `address`(
+                        `addressId` int(4) not null,
+                         `personID` int(4),
+                          `city` varchar(20),
+                          `state` varchar(20),
+                          primary key(`addressId`)
+                          )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                          insert into address(addressId,personID,city,state) values(1,2,'Bardhaman','West Bengal'),(2,1,'kolkata','west bengal'),(3,3,'patna','Bihar'),(4,5,null,null);
+                     
+                     
+------quary---------
+       select p.firstName as 'First Name',
+        p.lastName as 'Last Nmae',
+        a.city,
+        a.state
+        from person as p
+         left join address a on a.personId= p.personId;
+----------------question 2----------------------
+ ----table------
+ USE `Employee_table`;
+SET NAMES utf8 ;
+SET character_set_client = utf8mb4 ;
+create table `Emp`(
+                   `id` int(4) not null,
+                   `name` varchar(20),
+                   `salary` int(6),
+                   `managerId` int(4),
+                   primary key(`id`)
+                   )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                   insert into Emp(id,name,salary,managerId) values(1,'ABC',1235,2),(2,'eft',4567,4),(3,'EFG',5000,3),(4,'IJK',3000,1);
+create table `Manager`(
+                        `managerId` int(4) not null,
+                        `salary` int(6),
+                        primary key(`managerId`)
+                        )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+                        insert into Manager(managerId,salary) values(1,4050),(2,3423),(3,4000),(4,3050);
+------quary----------
+  select e.name as 'Employee'
+				
+         from Emp as e,
+              Manager as m
+         where e.salary> m.salary
+         and e.managerId= m.managerId 
